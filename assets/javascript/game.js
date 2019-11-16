@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  // set up global variables
   var wins = 0;
   var losses = 0;
   var score = 0;
@@ -7,13 +8,14 @@ $(document).ready(function() {
   var yellowGem;
   var blueGem;
   var greenGem;
-  // set up initial variables
+  // function to get a random number
   function getRandomNumber(minNumber, maxNumber) {
     var randomNumber = Math.floor(
       Math.random() * (maxNumber - minNumber + 1) + minNumber
     );
     return randomNumber;
   }
+  // give random numbers to game goal and each gem
   function init() {
     score = 0;
     randomGoal = getRandomNumber(19, 120);
@@ -30,6 +32,7 @@ $(document).ready(function() {
     // if
   }
   init();
+  // function to compare total score and goal to decide if the player win
   function compare() {
     if (score > randomGoal) {
       losses++;
@@ -47,28 +50,26 @@ $(document).ready(function() {
       console.log("continue");
     }
   }
-  $("#red").click(function(event) {
-    score = score + redGem;
+  // add points to total score when gems are clicked
+  function addScore(gemPoints) {
+    score = score + gemPoints;
     $("#score").html(score);
     console.log(score);
+  }
+  $("#red").click(function(event) {
+    addScore(redGem);
     compare();
   });
   $("#yellow").click(function(event) {
-    score = score + yellowGem;
-    $("#score").html(score);
-    console.log(score);
+    addScore(yellowGem);
     compare();
   });
   $("#blue").click(function(event) {
-    score = score + blueGem;
-    $("#score").html(score);
-    console.log(score);
+    addScore(blueGem);
     compare();
   });
   $("#green").click(function(event) {
-    score = score + greenGem;
-    $("#score").html(score);
-    console.log(score);
+    addScore(greenGem);
     compare();
   });
 });
