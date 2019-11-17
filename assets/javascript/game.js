@@ -19,11 +19,26 @@ $(document).ready(function() {
   // choose another number if any two of the gems are given the same number
   function getGemsValues(gemNum, minNumber, maxNumber) {
     var randomNum = getRandomNumber(minNumber, maxNumber);
+    var evenNumFlag = [];
     for (var i = 0; i < gemNum; i++) {
       while (gems.includes(randomNum)) {
         randomNum = getRandomNumber(minNumber, maxNumber);
       }
+      if (randomNum % 2 !== 0) {
+        evenNumFlag.push(false);
+      } else {
+        evenNumFlag.push(true);
+      }
+      console.log(evenNumFlag);
       gems.push(randomNum);
+    }
+    // if all 4 gems are stand for even numbers, and the goal is a odd number. The player can never win.
+    // to prevent this, when all 4 gem points are even numbers, the first one will be changed to an odd number.
+    if (evenNumFlag.indexOf(false) === -1) {
+      while (gems[0] % 2 === 0) {
+        gems[0] = getRandomNumber(minNumber, maxNumber);
+      }
+      console.log(gems[0]);
     }
   }
   // getGemsValues(4, 1, 12);
