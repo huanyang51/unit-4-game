@@ -2,7 +2,7 @@
 
 This is a calculator-like game writen in jQuery.
 
-`Math.floor` and `Math.random` are used to generate random numbers
+`Math.floor` and `Math.random` are used to generate random numbers.
 
 `.includes` and `.indexOf` are used to check if a number or string is already in an array.
 
